@@ -1,9 +1,10 @@
 // import { take, call, put, select } from 'redux-saga/effects';
-import { REQUEST_TOPICS, SELECT_TOPIC } from './constants';
+import { REQUEST_TOPICS, SELECT_TOPIC, REQUEST_TOPICS_SUCCEEDED } from './constants';
 import { takeLatest } from 'redux-saga';
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { requestTopicsSucceeded, requestTopicsFailed } from './actions';
 import {push} from 'react-router-redux';
+import selectNavigationContainer from './selectors';
 
 export function fetchTopicsFromServer(){
   return fetch('http://192.168.56.1:3000/api/topics').then( response =>  response.json()  );
@@ -22,6 +23,17 @@ function* pushTopic( action ){
   yield put(push(`/topics/${action.topic.name}`));
 }
 
+function* selectDefaultTopic() {
+  const state = yield select(selectNavigationContainer());
+  if(!state.selectedTopic){
+    yield put(push(`/topics/${state.topics[0].name}`));
+  }
+}
+
+export function* selectDefaultTopicsSaga(){
+  yield* takeLatest(REQUEST_TOPICS_SUCCEEDED, selectDefaultTopic);
+}
+
 function* selectTopicSaga(){
   yield* takeLatest(SELECT_TOPIC, pushTopic);
 }
@@ -34,5 +46,6 @@ export function* fetchTopicsSaga() {
 // All sagas to be loaded
 export default [
   fetchTopicsSaga,
-  selectTopicSaga
+  selectTopicSaga,
+  selectDefaultTopicsSaga
 ];
