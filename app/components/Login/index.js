@@ -19,6 +19,11 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
   }
   // instead of doing this.state in the constructor 
   state = {};
+  // But why don't just put i constructor there??
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {};
+  // }
   
   // Binding the field to this component. 
   // The alternative would be to bind the field with .bind(this);
