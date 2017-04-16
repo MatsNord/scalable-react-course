@@ -7,7 +7,7 @@
 import React from 'react';
 
 import styles from './styles.css';
-import classNames from 'classnames';
+import TextInput from '../TextInput';
 
 class LinkForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
   
@@ -21,40 +21,40 @@ class LinkForm extends React.Component { // eslint-disable-line react/prefer-sta
 
   render() {
     return (
-     <div className={styles.LinkForm}>
-        <div
-          className={styles.heading}
-        >
-            Add a Link
-        </div>
-        <input
-          className={classNames( styles.input, {[styles.inputError]:this.state.errorText})}
-          placeholder="URL"
-          ref={(f) => { this.urlField = f; }}
-          type="text"
-        />
-        <input
-          className={classNames( styles.input, {[styles.inputError]:this.state.errorText})}
-          placeholder="Description"
-          ref={(f) => { this.descriptionField = f; }}
-          type="text"
-        />
-
-        <div
-          className={styles.actionContainer}
-        >
-          <div
-            className={styles.button}
-            onClick={this.props.cancelLogin}
-          >
-            cancel
-          </div>
-          <div
-            className={styles.button}
-            //onClick={this.login.bind(this)}
-            onClick={this.login}
-          >
-            login in
+        <div className={styles.overlay}>
+          <div className={styles.linkForm}>
+            
+            <div
+              className={styles.heading}
+            >
+             Add a Link
+            </div>
+            
+            <TextInput
+              placeholder="URL"
+              className={styles.input}
+            >
+            </TextInput>
+            
+            <TextInput
+              placeholder="Description"
+              className={styles.input}
+            >
+            </TextInput>
+            
+            <div
+              className={styles.actionContainer}
+            >
+              <div
+                className={styles.button}
+              >
+                cancel
+              </div>
+              <div
+                className={styles.button}
+              >
+               add
+              </div>
           </div>
         </div>
       </div>
