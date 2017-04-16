@@ -11,6 +11,12 @@ import validator from 'email-validator';
 import classNames from 'classnames';
 
 class Login extends React.Component { // eslint-disable-line react/prefer-stateless-function
+ 
+ // This is an alternative way of defining proptypes rules on a React ES6 class 
+  static propTypes = {
+    login: React.PropTypes.func.isRequired,
+    cancelLogin: React.PropTypes.func.isRequired,
+  }
   // instead of doing this.state in the constructor 
   state = {};
   
@@ -27,6 +33,8 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
     this.setState({
       errorText: null,
     });
+
+    this.props.login(email);
   }
 
 
@@ -61,6 +69,7 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
         >
           <div
             className={styles.button}
+            onClick={this.props.cancelLogin}
           >
             cancel
           </div>
