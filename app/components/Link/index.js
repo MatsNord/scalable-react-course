@@ -38,8 +38,6 @@ function Link({ link }) {
           {link.description}
         </div>
       </div>
-
-
     </div>
   );
 }
