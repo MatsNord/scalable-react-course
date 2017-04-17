@@ -28,7 +28,7 @@ class TextInput extends React.Component { // eslint-disable-line react/prefer-st
     return (
       <div>
        <input
-            className={classNames( styles.input, this.props.className, {[styles.inputError]:this.props.errorText})}
+            className={classNames( styles.input, this.props.className, {[styles.inputError]: errorText})}
             placeholder={this.props.placeholder}
             ref={(f) => { this.field = f; }}
             type="text"

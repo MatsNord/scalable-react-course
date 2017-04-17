@@ -34,7 +34,7 @@ function LinkList({ links, topicName, children, startAdd }) {
 
 LinkList.propTypes = {
   startAdd: React.PropTypes.func.isRequired,
-  children: React.PropTypes.node,
+  children: React.PropTypes.element,
   topicName: React.PropTypes.string.isRequired,
   links: React.PropTypes.arrayOf(React.PropTypes.shape({
     description: React.PropTypes.string.isRequired,
